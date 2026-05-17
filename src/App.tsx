@@ -118,6 +118,20 @@ function HeroSection() {
         <SocialLink href="#" icon={<Linkedin />} label="LinkedIn" />
         <SocialLink href="#" icon={<Video />} label="@dev_with_grey" />
       </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs font-mono text-ink-muted/50 uppercase tracking-widest">Scroll to explore</span>
+        <motion.div 
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-12 bg-gradient-to-b from-accent/50 to-transparent"
+        />
+      </motion.div>
     </motion.section>
   );
 }
