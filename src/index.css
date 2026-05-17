@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #050d12;
+  --color-ink-primary: #FFFFFF;
+  --color-ink-muted: #C7F9CC;
+  --color-accent: #57CC99;
+  --color-glass-bg: rgba(34, 87, 122, 0.15); /* #22577A */
+  --color-glass-border: rgba(56, 163, 165, 0.25); /* #38A3A5 */
+
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-ink-primary font-sans antialiased selection:bg-accent/30 selection:text-white;
+  }
+}
+
+.glass-panel {
+  @apply bg-glass-bg border border-glass-border backdrop-blur-2xl rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+}

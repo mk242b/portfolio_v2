@@ -1,0 +1,6 @@
+{
+  "name": "Khun Myat Hpone - Portfolio",
+  "description": "Minimalist single-page portfolio website for Khun Myat Hpone, a Gameplay Programmer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
