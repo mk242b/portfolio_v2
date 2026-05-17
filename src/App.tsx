@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Github, Linkedin, Mail, Video, ExternalLink, Code2, MonitorPlay, Layers, Wrench, Gamepad2, ChevronRight, Briefcase, GraduationCap, Sun, Moon } from 'lucide-react';
+import { Github, Linkedin, Mail, Video, ExternalLink, Code2, MonitorPlay, Layers, Wrench, Gamepad2, ChevronRight, Briefcase, GraduationCap, Sun, Moon, Home, User, Folder } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 const FADE_UP_ANIMATION_VARIANTS = {
@@ -11,6 +11,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-bg relative selection:bg-accent/20">
       <ThemeToggle />
+      <SideNav />
       {/* Subtle background ambient lights */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div 
@@ -72,7 +73,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 sm:top-8 sm:right-8 z-50 p-3 rounded-full glass-panel focus:outline-none hover:bg-glass-border/80 transition-all duration-300 flex items-center justify-center text-ink-muted hover:text-accent group"
+      className="fixed top-6 right-3 sm:top-8 sm:right-5 md:right-8 xl:right-12 z-50 w-12 h-12 rounded-full glass-panel focus:outline-none hover:bg-glass-border/80 transition-all duration-300 flex items-center justify-center text-ink-muted hover:text-accent group shadow-lg"
       title="Toggle Theme"
       aria-label="Toggle theme"
     >
@@ -85,12 +86,69 @@ function ThemeToggle() {
   );
 }
 
+function SideNav() {
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    document.querySelectorAll('section[id]').forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const links = [
+    { id: 'home', label: 'Home', icon: Home },
+    { id: 'about', label: 'About', icon: User },
+    { id: 'projects', label: 'Projects', icon: Folder },
+    { id: 'skills', label: 'Skills', icon: Code2 }
+  ];
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <nav className="fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row items-center gap-4 px-4 h-12 glass-panel !rounded-full shadow-lg">
+      {links.map((link) => {
+        const Icon = link.icon;
+        const isActive = activeSection === link.id;
+        return (
+          <button
+            key={link.id}
+            onClick={() => scrollTo(link.id)}
+            className={`group flex items-center justify-center w-9 h-9 rounded-full focus:outline-none transition-all duration-300 relative ${isActive ? 'bg-accent/10 border border-accent/20' : 'hover:bg-glass-border/30'}`}
+            aria-label={`Scroll to ${link.label}`}
+          >
+            {/* Tooltip */}
+            <span className={`absolute bottom-12 px-2 py-1 rounded bg-glass-panel border border-glass-border text-[10px] sm:text-xs font-mono uppercase tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-ink-primary`}>
+              {link.label}
+            </span>
+            <Icon 
+              className={`w-4 h-4 transition-all duration-300 ${isActive ? 'text-accent scale-110' : 'text-ink-primary/40 group-hover:text-ink-primary'}`} 
+            />
+          </button>
+        );
+      })}
+    </nav>
+  );
+}
+
 function HeroSection() {
   const { scrollY } = useScroll();
   const scrollOpacity = useTransform(scrollY, [0, 150], [1, 0]);
 
   return (
     <motion.section 
+      id="home"
       initial="hidden"
       animate="show"
       viewport={{ once: true }}
@@ -179,6 +237,7 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
 function AboutSection() {
   return (
     <motion.section 
+      id="about"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
@@ -280,6 +339,7 @@ const PROJECTS = [
 function ProjectsSection() {
   return (
     <motion.section 
+      id="projects"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
@@ -384,6 +444,7 @@ function SkillsSection() {
 
   return (
     <motion.section 
+      id="skills"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
