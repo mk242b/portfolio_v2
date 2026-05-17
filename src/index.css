@@ -1,23 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    --theme-bg: #050d12;
+    --theme-ink-primary: #FFFFFF;
+    --theme-ink-muted: #C7F9CC;
+    --theme-accent: #57CC99;
+    --theme-glass-bg: rgba(34, 87, 122, 0.15); /* #22577A */
+    --theme-glass-border: rgba(56, 163, 165, 0.25); /* #38A3A5 */
+  }
+
+  :root.light {
+    --theme-bg: #F8FAF9; /* Soft light background related to the theme */
+    --theme-ink-primary: #050d12;
+    --theme-ink-muted: #22577A; /* Dark blue from palette */
+    --theme-accent: #38A3A5; /* Teal from palette */
+    --theme-glass-bg: rgba(128, 237, 153, 0.15); /* #80ED99 tint */
+    --theme-glass-border: rgba(56, 163, 165, 0.25);
+  }
+}
+
 @theme {
-  --color-bg: #050d12;
-  --color-ink-primary: #FFFFFF;
-  --color-ink-muted: #C7F9CC;
-  --color-accent: #57CC99;
-  --color-glass-bg: rgba(34, 87, 122, 0.15); /* #22577A */
-  --color-glass-border: rgba(56, 163, 165, 0.25); /* #38A3A5 */
+  --color-bg: var(--theme-bg);
+  --color-ink-primary: var(--theme-ink-primary);
+  --color-ink-muted: var(--theme-ink-muted);
+  --color-accent: var(--theme-accent);
+  --color-glass-bg: var(--theme-glass-bg);
+  --color-glass-border: var(--theme-glass-border);
 
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-bg text-ink-primary font-sans antialiased selection:bg-accent/30 selection:text-white;
+    @apply bg-bg text-ink-primary font-sans antialiased selection:bg-accent/30 selection:text-ink-primary;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
 .glass-panel {
-  @apply bg-glass-bg border border-glass-border backdrop-blur-2xl rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  @apply bg-glass-bg border border-glass-border rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)];
+  backdrop-filter: blur(18px) saturate(180%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

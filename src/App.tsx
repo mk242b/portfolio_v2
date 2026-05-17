@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Video, ExternalLink, Code2, MonitorPlay, Layers, Wrench, Gamepad2, ChevronRight, Briefcase, GraduationCap } from 'lucide-react';
-import React, { ReactNode } from 'react';
+import { Github, Linkedin, Mail, Video, ExternalLink, Code2, MonitorPlay, Layers, Wrench, Gamepad2, ChevronRight, Briefcase, GraduationCap, Sun, Moon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 const FADE_UP_ANIMATION_VARIANTS = {
   hidden: { opacity: 0, y: 30 },
@@ -10,10 +10,19 @@ const FADE_UP_ANIMATION_VARIANTS = {
 export default function App() {
   return (
     <div className="min-h-screen bg-bg relative selection:bg-accent/20">
+      <ThemeToggle />
       {/* Subtle background ambient lights */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[0%] left-[10%] w-[50%] h-[50%] rounded-full bg-[#22577A]/[0.15] blur-[140px]" />
-        <div className="absolute bottom-[0%] right-[10%] w-[40%] h-[40%] rounded-full bg-[#38A3A5]/[0.1] blur-[120px]" />
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -40, 0] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[0%] left-[10%] w-[50%] h-[50%] rounded-full bg-[#22577A]/[0.2] blur-[140px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, -30, 0], y: [0, 50, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[0%] right-[10%] w-[40%] h-[40%] rounded-full bg-[#38A3A5]/[0.15] blur-[120px]" 
+        />
       </div>
 
       <main className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pb-32">
@@ -25,6 +34,40 @@ export default function App() {
 
       <Footer />
     </div>
+  );
+}
+
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    if (document.documentElement.classList.contains('light')) {
+      setIsDark(false);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
+    setIsDark(!isDark);
+  };
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="fixed top-6 right-6 sm:top-8 sm:right-8 z-50 p-3 rounded-full glass-panel focus:outline-none hover:bg-glass-border/80 transition-all duration-300 flex items-center justify-center text-ink-muted hover:text-accent group"
+      title="Toggle Theme"
+      aria-label="Toggle theme"
+    >
+      {isDark ? (
+        <Sun className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" strokeWidth={1.5} />
+      ) : (
+        <Moon className="w-5 h-5 group-hover:-rotate-12 transition-transform duration-500" strokeWidth={1.5} />
+      )}
+    </button>
   );
 }
 
@@ -81,9 +124,11 @@ function HeroSection() {
 
 function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
-    <a 
+    <motion.a 
       href={href} 
-      className="group flex items-center gap-2 px-4 py-2 rounded-full border border-glass-border bg-glass-bg hover:bg-glass-border hover:border-accent/30 transition-all duration-300 backdrop-blur-sm"
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      className="group flex items-center gap-2 px-4 py-2 rounded-full border border-glass-border bg-glass-bg hover:bg-glass-border hover:border-accent/40 shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-colors duration-300 backdrop-blur-xl"
     >
       <span className="text-ink-muted group-hover:text-accent transition-colors w-4 h-4 flex items-center justify-center *:w-full *:h-full">
         {icon}
@@ -91,7 +136,7 @@ function SocialLink({ href, icon, label }: { href: string; icon: React.ReactNode
       <span className="text-sm font-medium text-ink-muted group-hover:text-ink-primary transition-colors">
         {label}
       </span>
-    </a>
+    </motion.a>
   );
 }
 
@@ -229,7 +274,8 @@ function ProjectRow({ project, index }: { project: typeof PROJECTS[0], index: nu
   return (
     <motion.div 
       variants={FADE_UP_ANIMATION_VARIANTS}
-      className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center p-6 sm:p-8 glass-panel hover:bg-glass-border/50 hover:border-glass-border/80 transition-all duration-500`}
+      whileHover={{ y: -6, scale: 1.01 }}
+      className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center p-6 sm:p-8 glass-panel hover:bg-glass-border/40 hover:border-glass-border/80 transition-colors duration-300`}
     >
       <div className="w-full md:w-5/12 aspect-video rounded-xl bg-ink-muted/5 border border-glass-border overflow-hidden relative flex items-center justify-center">
         {project.image ? (
@@ -322,9 +368,11 @@ function SkillsSection() {
           <motion.div 
             key={idx}
             variants={FADE_UP_ANIMATION_VARIANTS}
-            className="group flex flex-col p-6 rounded-2xl bg-ink-muted/[0.02] hover:bg-glass-bg border border-transparent hover:border-glass-border transition-colors duration-300"
+            whileHover={{ y: -5 }}
+            className="group flex flex-col p-6 rounded-2xl glass-panel relative overflow-hidden transition-colors duration-300"
           >
-            <div className="w-10 h-10 mb-6 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+            <div className="absolute -inset-4 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="w-10 h-10 mb-6 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent relative z-10">
               {React.cloneElement(skillGroup.icon as React.ReactElement, { className: 'w-5 h-5', strokeWidth: 1.5 })}
             </div>
             <h4 className="text-base text-ink-primary font-medium mb-4">{skillGroup.category}</h4>
