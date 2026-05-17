@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Github, Linkedin, Mail, Video, ExternalLink, Code2, MonitorPlay, Layers, Wrench, Gamepad2, ChevronRight, Briefcase, GraduationCap, Sun, Moon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
@@ -23,6 +23,20 @@ export default function App() {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute bottom-[0%] right-[10%] w-[40%] h-[40%] rounded-full bg-[#38A3A5]/[0.15] blur-[120px]" 
         />
+        
+        {/* Animated Unity Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-10 light:opacity-20 transition-opacity duration-500 max-w-full max-h-[100dvh] overflow-hidden">
+          <div className="bounce-x absolute top-0 w-24 h-full">
+            <div className="bounce-y absolute left-0 w-24 h-24 flex items-center justify-center">
+              <img 
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" 
+                alt="" 
+                className="w-12 h-12 sm:w-16 sm:h-16 object-contain contrast-0" 
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <main className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 md:px-12 pb-32">
@@ -72,6 +86,9 @@ function ThemeToggle() {
 }
 
 function HeroSection() {
+  const { scrollY } = useScroll();
+  const scrollOpacity = useTransform(scrollY, [0, 150], [1, 0]);
+
   return (
     <motion.section 
       initial="hidden"
@@ -120,17 +137,22 @@ function HeroSection() {
       </motion.div>
 
       <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{ opacity: scrollOpacity }}
+        className="mt-16 sm:mt-24 w-full"
       >
-        <span className="text-xs font-mono text-ink-muted/50 uppercase tracking-widest">Scroll to explore</span>
-        <motion.div 
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[1px] h-12 bg-gradient-to-b from-accent/50 to-transparent"
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="flex flex-col items-center justify-center gap-4"
+        >
+          <span className="text-xs font-mono text-ink-muted/50 uppercase tracking-widest">Scroll to explore</span>
+          <motion.div 
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-[1px] h-12 bg-gradient-to-b from-accent/50 to-transparent"
+          />
+        </motion.div>
       </motion.div>
     </motion.section>
   );
@@ -167,24 +189,23 @@ function AboutSection() {
       className="py-24 border-t border-glass-border/50"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-        <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="md:col-span-5 relative group">
-          <div className="aspect-[4/5] rounded-3xl overflow-hidden glass-panel relative z-10 p-2">
-            <div className="w-full h-full rounded-2xl bg-gradient-to-br from-ink-muted/10 to-glass-border/20 flex flex-col items-center justify-center border border-glass-border/50 relative overflow-hidden group-hover:border-accent/20 transition-colors duration-500">
-               {/* Profile Image */}
-               <img 
-                 src="https://i.ibb.co/9k3Mq7n3/kmp-mugshot.jpg" 
-                 alt="Khun Myat Hpone" 
-                 className="w-full h-full object-cover"
-                 referrerPolicy="no-referrer"
-               />
-               
-               {/* Fallback Icon (shows while image is loading or if missing) */}
-               <div className="absolute inset-0 flex items-center justify-center -z-10 bg-glass-bg">
-                 <Gamepad2 className="w-12 h-12 text-accent/20" strokeWidth={1} />
-               </div>
-            </div>
-          </div>
-          <div className="absolute -inset-4 bg-accent/5 blur-2xl rounded-3xl z-0 group-hover:bg-accent/10 transition-colors duration-500" />
+        <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="md:col-span-5 relative group flex justify-center">
+           {/* Profile Image */}
+           <div className="relative z-10 w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:scale-105 border border-glass-border group-hover:border-accent/40 group-hover:shadow-[0_0_40px_rgba(87,204,153,0.2)]">
+             <img 
+               src="https://i.ibb.co/9k3Mq7n3/kmp-mugshot.jpg" 
+               alt="Khun Myat Hpone" 
+               className="w-full h-full object-cover"
+               referrerPolicy="no-referrer"
+             />
+             
+             {/* Fallback Icon */}
+             <div className="absolute inset-0 flex items-center justify-center -z-10 bg-glass-bg">
+               <Gamepad2 className="w-12 h-12 text-accent/20" strokeWidth={1} />
+             </div>
+           </div>
+           
+           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 bg-accent/10 blur-[80px] w-full h-1/2 rounded-full z-0 group-hover:bg-accent/20 transition-colors duration-500" />
         </motion.div>
         
         <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="md:col-span-7">

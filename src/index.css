@@ -44,3 +44,21 @@
   backdrop-filter: blur(18px) saturate(180%);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+@keyframes bounceX {
+  from { left: 0; transform: translateX(0); }
+  to { left: 100%; transform: translateX(-100%); }
+}
+
+@keyframes bounceY {
+  from { top: 0; transform: translateY(0); }
+  to { top: 100%; transform: translateY(-100%); }
+}
+
+.bounce-x {
+  animation: bounceX 8.5s linear infinite alternate;
+}
+
+.bounce-y {
+  animation: bounceY 5.3s linear infinite alternate;
+}
