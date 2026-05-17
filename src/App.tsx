@@ -73,7 +73,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-6 right-3 sm:top-8 sm:right-5 md:right-8 xl:right-12 z-50 w-12 h-12 rounded-full glass-panel focus:outline-none hover:bg-glass-border/80 transition-all duration-300 flex items-center justify-center text-ink-muted hover:text-accent group shadow-lg"
+      className="fixed top-6 right-3 sm:top-8 sm:right-5 md:right-8 xl:right-12 z-[100] w-12 h-12 rounded-full glass-panel focus:outline-none hover:bg-glass-border/80 transition-all duration-300 flex items-center justify-center text-ink-muted hover:text-accent group shadow-lg"
       title="Toggle Theme"
       aria-label="Toggle theme"
     >
@@ -117,7 +117,7 @@ function SideNav() {
   };
 
   return (
-    <nav className="fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row items-center gap-4 px-4 h-12 glass-panel !rounded-full shadow-lg">
+    <nav className="fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-[100] flex flex-row items-center justify-center gap-4 px-4 h-12 glass-panel !rounded-full shadow-lg">
       {links.map((link) => {
         const Icon = link.icon;
         const isActive = activeSection === link.id;
