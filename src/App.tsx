@@ -42,14 +42,14 @@ function HeroSection() {
     >
       <motion.div variants={FADE_UP_ANIMATION_VARIANTS} className="flex items-center gap-4 mb-6">
         <div className="h-[1px] w-8 bg-accent" />
-        <span className="text-accent font-mono text-xs tracking-wider uppercase">Portfolio 2026</span>
+        <span className="text-accent font-mono text-xs tracking-wider uppercase">Portfolio</span>
       </motion.div>
       
       <motion.h1 
         variants={FADE_UP_ANIMATION_VARIANTS} 
         className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tight text-ink-primary mb-6"
       >
-        Khun Myat<br className="sm:hidden"/> Hpone.
+        Khun Myat<br className="sm:hidden"/> Hpone
       </motion.h1>
       
       <motion.h2 
@@ -113,9 +113,10 @@ function AboutSection() {
             <div className="w-full h-full rounded-2xl bg-gradient-to-br from-ink-muted/10 to-glass-border/20 flex flex-col items-center justify-center border border-glass-border/50 relative overflow-hidden group-hover:border-accent/20 transition-colors duration-500">
                {/* Profile Image */}
                <img 
-                 src="/profile.jpg" 
+                 src="https://i.ibb.co/9k3Mq7n3/kmp-mugshot.jpg" 
                  alt="Khun Myat Hpone" 
                  className="w-full h-full object-cover"
+                 referrerPolicy="no-referrer"
                />
                
                {/* Fallback Icon (shows while image is loading or if missing) */}
@@ -164,30 +165,35 @@ const PROJECTS = [
     roles: ["Gameplay Programmer", "Level Designer"],
     description: "An immersive atmospheric side-scroller platformer set in a dystopian future. Inspired by cinematic platformers.",
     tags: ["Unity3D", "C#", "Mechanics", "Level Design"],
+    image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhmaHVueXNmbXR5eXhxa2xucjU3d3c4cjV1eW55cXZweDl1ZHNuZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c7mso33ESjbSfI3RDC/giphy.gif"
   },
   {
     title: "Nobody Knows What Happened",
     roles: ["Gameplay Programmer", "Level Design"],
     description: "A first-person explorer game set in a unique 1980s environment.",
     tags: ["Unity3D", "C#", "Sound-Design", "Mechanics"],
+    image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbG11cTVranV5b3N5bGE1d3MwZXI2bDRycDU5bDgzbWJ0c2R5bWk1ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nrOOXmVMZjrFz3wp2a/giphy.gif"
   },
   {
     title: "Terrashell",
     roles: ["Gameplay Programmer", "Level Designer"],
     description: "A cozy farming simulation focusing on time management and top-down strategy mechanics. (In Development)",
     tags: ["Farming Sim", "Time Management", "Top-Down Strategy", "Unity3D"],
+    image: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWMydjd4Ymt2d2p3cG5zNDU3anYzMGt6NGpkNzMxdWxwaHVnem5kMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/r24qMSLM4gLZ6xqM0f/giphy.gif"
   },
   {
     title: "Diving Deeper",
     roles: ["Gameplay Programmer"],
     description: "A Puzzle Adventure Game created for Brackeys Game Jam 2023.2, focusing on mechanical puzzle design.",
     tags: ["Unity3D", "Game Mechanics", "Puzzle Design", "Game Jam"],
+    image: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmUzamtibzh6dmJvamNhdzZ4dW4yOXJtcm11cjEwOGt4dmpjeHZnYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G0Mz3b670R4TxZn2II/giphy.gif"
   },
   {
     title: "Chaos 2 Run",
     roles: ["Gameplay Programmer"],
     description: "A top-down 2.5D puzzle game built for Brackeys Game Jam 2021.2.",
     tags: ["Unity3D", "Game Jam", "Game Mechanics"],
+    image: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExamMzZmU2Z3EyMzQzemYxNDBrOWVrZ3QxMzY0dzczM3Jyd2RwbGphcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fEKjlUGkIqxrIfWYqu/giphy.gif"
   }
 ];
 
@@ -226,9 +232,12 @@ function ProjectRow({ project, index }: { project: typeof PROJECTS[0], index: nu
       className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center p-6 sm:p-8 glass-panel hover:bg-glass-border/50 hover:border-glass-border/80 transition-all duration-500`}
     >
       <div className="w-full md:w-5/12 aspect-video rounded-xl bg-ink-muted/5 border border-glass-border overflow-hidden relative flex items-center justify-center">
-        {/* Placeholder for GIF/Video */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-        <MonitorPlay className="w-12 h-12 text-ink-muted/30 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
+        {project.image ? (
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        ) : (
+          <MonitorPlay className="w-12 h-12 text-ink-muted/30 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
            <span className="text-xs font-mono text-white/50">{index + 1 < 10 ? `0${index+1}` : index + 1}</span>
            <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur flex items-center justify-center border border-white/10">
