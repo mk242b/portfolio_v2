@@ -3,21 +3,21 @@
 
 @layer base {
   :root {
-    --theme-bg: #050d12;
-    --theme-ink-primary: #FFFFFF;
-    --theme-ink-muted: #C7F9CC;
-    --theme-accent: #57CC99;
-    --theme-glass-bg: rgba(34, 87, 122, 0.15); /* #22577A */
-    --theme-glass-border: rgba(56, 163, 165, 0.25); /* #38A3A5 */
+    --theme-bg: #0B0F19; /* Obsidian Dark */
+    --theme-ink-primary: #F3F4F6; /* Crisp White */
+    --theme-ink-muted: #9CA3AF; /* Steel Gray */
+    --theme-accent: #00F0FF; /* Neon Cyan */
+    --theme-glass-bg: rgba(22, 31, 48, 0.6); /* Slate Core */
+    --theme-glass-border: rgba(0, 240, 255, 0.2);
   }
 
   :root.light {
-    --theme-bg: #F8FAF9; /* Soft light background related to the theme */
-    --theme-ink-primary: #050d12;
-    --theme-ink-muted: #22577A; /* Dark blue from palette */
-    --theme-accent: #38A3A5; /* Teal from palette */
-    --theme-glass-bg: rgba(128, 237, 153, 0.15); /* #80ED99 tint */
-    --theme-glass-border: rgba(56, 163, 165, 0.25);
+    --theme-bg: #F3F4F6; 
+    --theme-ink-primary: #0B0F19; 
+    --theme-ink-muted: #4B5563; 
+    --theme-accent: #00A3B5; 
+    --theme-glass-bg: rgba(255, 255, 255, 0.5); 
+    --theme-glass-border: rgba(0, 163, 181, 0.2);
   }
 }
 
