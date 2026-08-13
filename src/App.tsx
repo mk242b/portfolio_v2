@@ -325,7 +325,7 @@ const PROJECTS = [
     tags: ["Unity3D", "C#", "Mechanics", "Level Design"],
     image: "/assets/silent-reverie.gif",
     linkTitle: "View on itch.io",
-    linkUrl: "https://itch.io"
+    linkUrl: "https://greydash.itch.io/silent-reverie"
   },
   {
     title: "Nobody Knows What Happened",
@@ -339,8 +339,8 @@ const PROJECTS = [
     ],
     tags: ["Unity3D", "C#", "Sound-Design", "Mechanics"],
     image: "/assets/nobody-knows.gif",
-    linkTitle: "GitHub Repo",
-    linkUrl: "https://github.com/mk242b"
+    linkTitle: "View on itch.io",
+    linkUrl: "https://greydash.itch.io/nobody-knows-what-happened"
   },
   {
     title: "Terrashell",
@@ -370,7 +370,7 @@ const PROJECTS = [
     tags: ["Unity3D", "Game Mechanics", "Puzzle Design", "Game Jam"],
     image: "/assets/diving-deeper.gif",
     linkTitle: "Play on itch.io",
-    linkUrl: "https://itch.io"
+    linkUrl: "https://greydash.itch.io/diving-deeper"
   },
   {
     title: "Chaos 2 Run",
@@ -385,7 +385,7 @@ const PROJECTS = [
     tags: ["Unity3D", "Game Jam", "Game Mechanics"],
     image: "/assets/chaos-2-run.gif",
     linkTitle: "Play on itch.io",
-    linkUrl: "https://itch.io"
+    linkUrl: "https://greydash.itch.io/chaos-2-run"
   }
 ];
 
