@@ -191,9 +191,10 @@ function HeroSection() {
         className="flex flex-wrap items-center gap-4 sm:gap-6"
       >
         <motion.a
-          href="/resume.pdf"
+          href="/SaiKhunMyatHpone.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          download="SaiKhunMyatHpone.pdf"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
           className="group flex items-center gap-2 px-6 py-2 rounded-full bg-accent text-bg font-medium shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all duration-300"
@@ -203,8 +204,8 @@ function HeroSection() {
         </motion.a>
         <SocialLink href="mailto:khunmyathpone@gmail.com" icon={<Mail />} label="Email" />
         <SocialLink href="https://github.com/mk242b" icon={<Github />} label="mk242b" />
-        <SocialLink href="https://www.linkedin.com/in/khunmyathpone" icon={<Linkedin />} label="LinkedIn" />
-        <SocialLink href="https://youtube.com/@dev_with_grey" icon={<Video />} label="@dev_with_grey" />
+        <SocialLink href="https://www.linkedin.com/in/khun-myat-hpone-5752501b7?utm_source=share_via&utm_content=profile&utm_medium=member_android" icon={<Linkedin />} label="LinkedIn" />
+        <SocialLink href="https://www.tiktok.com/@dev_with_grey" icon={<Video />} label="@dev_with_grey" />
       </motion.div>
 
       <motion.div 
