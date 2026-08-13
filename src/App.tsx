@@ -605,6 +605,8 @@ function ContactSection() {
       <motion.a 
         variants={FADE_UP_ANIMATION_VARIANTS}
         href="mailto:khunmyathpone@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="inline-flex items-center gap-2 px-8 py-4 mt-4 rounded-full bg-glass-bg border border-accent/50 text-accent font-medium shadow-[0_4px_24px_rgba(0,240,255,0.15)] hover:bg-accent hover:text-bg hover:shadow-[0_4px_32px_rgba(0,240,255,0.3)] transition-all duration-300"
